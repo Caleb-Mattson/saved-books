@@ -1,37 +1,15 @@
-const db = require("../models");
+const axios = require("axios");
 
-// Defining methods for the FavoritesController
-module.exports = {
-  findAll: function(req, res) {
-    db.Favorite
-      .find(req.query)
-      .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  findById: function(req, res) {
-    db.Favorite
-      .findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  create: function(req, res) {
-    db.Favorite
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  update: function(req, res) {
-    db.Favorite
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  remove: function(req, res) {
-    db.Favorite
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  }
-};
+function apiRoutes(app) {
+    app.get("/api/googlebooks/:title", function (req, res) {
+        const title = req.params.title;
+        const URL = "https://www.googleapis.com/books/v1/volumes?q=" + title
+        axios.get(URL)
+        .then(function(response) {
+            console.log(response.data.items)
+            res.json(response.data.items);
+        });
+    })
+}
+
+module.exports = apiRoutes;

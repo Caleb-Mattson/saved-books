@@ -4,7 +4,10 @@ const Schema = mongoose.Schema;
 const FavoriteSchema = new Schema({
   title: { type: String, required: true },
   author: { type: String, required: true },
-  synopsis: String,
+  plot: {type: String},
+  image: {type: String},
+  link: {type: String, required: true},
+  saved: {type: Boolean, default: false},
   date: { type: Date, default: Date.now }
 });
 
