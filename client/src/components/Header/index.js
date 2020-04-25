@@ -8,9 +8,9 @@ export default {
             <div>
                 <nav>
                     <div className="nav-wrapper">
-                        <a href="/search" className="brand-logo center">Logo</a>
+                        <a href="/" className="brand-logo center">Logo</a>
                         <ul id="nav-mobile" className="left hide-on-med-and-down">
-                            <li><a href="/search">Search</a></li>
+                            <li><a href="/books">Books</a></li>
                             <li><a href="/favorites">Favorited</a></li>
                         </ul>
                     </div>
